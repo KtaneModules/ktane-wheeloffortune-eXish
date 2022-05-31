@@ -25,6 +25,7 @@ public class WheelOfFortuneScript : MonoBehaviour {
     private int curLight = -1;
     private bool animating = false;
     private bool focused = false;
+    private bool activated = false;
     private float lightSpeed;
     private Coroutine lightAnim;
 
@@ -87,11 +88,12 @@ public class WheelOfFortuneScript : MonoBehaviour {
         displays[1].gameObject.SetActive(true);
         displays[2].gameObject.SetActive(true);
         StartCoroutine(RunTheLights());
+        activated = true;
     }
 
     void PressStopButton(KMSelectable pressed)
     {
-        if (moduleSolved) return;
+        if (moduleSolved || !activated) return;
         audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, pressed.transform);
         if (!animating)
         {
