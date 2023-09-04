@@ -337,6 +337,7 @@ public class WheelOfFortuneScript : MonoBehaviour {
             }
             yield return null;
             stopBtn.OnInteract();
+            yield return "solve";
             yield break;
         }
         if (Regex.IsMatch(command, @"^\s*toggle\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
